@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para mi cachetoncita 💛</title>
+
+<style>
+
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:Georgia,serif;
+    color:#5a4300;
+    background:
+        radial-gradient(circle at 20% 20%,#fff9c4 0%,transparent 30%),
+        radial-gradient(circle at 80% 80%,#ffe88a 0%,transparent 30%),
+        linear-gradient(135deg,#fffdf0,#fff1a8,#fffbe4);
+    overflow-x:hidden;
+}
+
+
+/* =========================
+   PANTALLA DE INICIO
+========================= */
+
+.intro{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+    background:
+        radial-gradient(circle at center,#fff8bd,#ffe67a,#f8cf32);
+    transition:1s ease;
+}
+
+.intro.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.envelope{
+    width:min(520px,90vw);
+    padding:45px 30px;
+    text-align:center;
+
+    background:rgba(255,255,255,.88);
+    border:2px solid rgba(214,166,0,.4);
+    border-radius:30px;
+
+    box-shadow:
+        0 25px 70px rgba(100,75,0,.25);
+
+    animation:entrada 1s ease;
+}
+
+.envelope .flower-icon{
+    font-size:4rem;
+    animation:balanceo 2s ease-in-out infinite;
+}
+
+.envelope h1{
+    font-size:clamp(2rem,7vw,3.5rem);
+    margin:15px 0 10px;
+}
+
+.envelope p{
+    font-size:1.15rem;
+    line-height:1.6;
+}
+
+.open-btn{
+    border:0;
+    border-radius:999px;
+    padding:15px 30px;
+    margin-top:18px;
+
+    font-size:1rem;
+    font-weight:bold;
+
+    background:#f4c400;
+    color:#4b3900;
+
+    cursor:pointer;
+
+    box-shadow:0 7px 0 #c99d00;
+
+    transition:.2s;
+}
+
+.open-btn:hover{
+    transform:translateY(-3px);
+}
+
+.open-btn:active{
+    transform:translateY(4px);
+    box-shadow:0 3px 0 #c99d00;
+}
+
+
+/* =========================
+   CONTENEDOR PRINCIPAL
+========================= */
+
+main{
+    position:relative;
+    z-index:2;
+}
+
+.section{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:50px 20px;
+}
+
+.card{
+    width:min(900px,94vw);
+
+    background:rgba(255,255,255,.82);
+
+    backdrop-filter:blur(10px);
+
+    border:2px solid rgba(238,190,34,.45);
+
+    border-radius:30px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:
+        0 20px 60px rgba(120,90,0,.18);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero-flower{
+    font-size:3rem;
+
+    animation:
+        balanceo 3s ease-in-out infinite;
+}
+
+h1{
+    font-size:clamp(2.2rem,7vw,4.5rem);
+    margin:10px 0;
+
+    line-height:1.1;
+}
+
+.subtitle{
+    font-size:1.2rem;
+    line-height:1.7;
+}
+
+
+/* =========================
+   FOTO PRINCIPAL
+========================= */
+
+.photo-container{
+    position:relative;
+    display:inline-block;
+    margin:25px 0;
+}
+
+.photo{
+    width:min(450px,88vw);
+    max-height:55vh;
+
+    object-fit:cover;
+
+    border-radius:25px;
+
+    border:7px solid white;
+
+    box-shadow:
+        0 15px 40px rgba(80,60,0,.25);
+
+    transition:.5s ease;
+}
+
+.photo:hover{
+    transform:scale(1.03) rotate(-1deg);
+}
+
+
+/* =========================
+   BOTONES
+========================= */
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+button{
+    border:0;
+    border-radius:999px;
+
+    padding:14px 22px;
+
+    font-size:1rem;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    background:#f4c400;
+    color:#4b3900;
+
+    box-shadow:0 6px 0 #c99d00;
+
+    transition:.18s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+}
+
+button:active{
+    transform:translateY(3px);
+    box-shadow:0 3px 0 #c99d00;
+}
+
+.secondary{
+    background:#fff4b2;
+}
+
+
+/* =========================
+   MENSAJE
+========================= */
+
+#message{
+    display:none;
+
+    max-width:680px;
+
+    margin:30px auto 0;
+
+    font-size:1.2rem;
+    line-height:1.8;
+
+    animation:aparecer .8s ease;
+}
+
+.highlight{
+    display:block;
+
+    margin-top:20px;
+
+    font-size:1.6rem;
+}
+
+
+/* =========================
+   SECCIÓN RECUERDO
+========================= */
+
+.memory{
+    max-width:900px;
+}
+
+.memory h2{
+    font-size:clamp(2rem,6vw,3rem);
+}
+
+.memory-text{
+    font-size:1.15rem;
+    line-height:1.8;
+}
+
+
+/* =========================
+   ÁLBUM DE FOTOS
+========================= */
+
+.album{
+    width:100%;
+    max-width:760px;
+
+    margin:30px auto 0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:15px;
+}
+
+.album-photo-box{
+    width:100%;
+    max-width:560px;
+
+    background:rgba(255,255,255,.9);
+
+    padding:12px;
+
+    border-radius:25px;
+
+    box-shadow:
+        0 15px 40px rgba(80,60,0,.18);
+
+    border:2px solid rgba(238,190,34,.35);
+}
+
+.album-photo{
+    display:block;
+
+    width:100%;
+    height:430px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease;
+}
+
+.album-photo.change{
+    opacity:0;
+    transform:scale(.96);
+}
+
+.album-info{
+    padding:12px 10px 5px;
+}
+
+.album-number{
+    display:block;
+
+    font-size:.9rem;
+
+    color:#a47700;
+
+    font-weight:bold;
+
+    margin-bottom:7px;
+}
+
+.album-caption{
+    margin:0;
+
+    font-size:1.05rem;
+
+    line-height:1.6;
+
+    color:#6d5200;
+}
+
+.album-btn{
+    flex-shrink:0;
+
+    width:48px;
+    height:48px;
+
+    padding:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    font-size:1.2rem;
+
+    background:#f4c400;
+}
+
+.album-btn:hover{
+    transform:scale(1.08);
+}
+
+.album-dots{
+    margin-top:20px;
+
+    display:flex;
+    justify-content:center;
+    gap:8px;
+}
+
+.album-dot{
+    width:11px;
+    height:11px;
+
+    padding:0;
+
+    border-radius:50%;
+
+    background:#e4c95f;
+
+    box-shadow:none;
+
+    transition:.2s;
+}
+
+.album-dot:hover{
+    transform:scale(1.15);
+}
+
+.album-dot.active{
+    background:#c89400;
+
+    transform:scale(1.3);
+}
+
+.album-final{
+    max-width:650px;
+
+    margin:30px auto 0;
+
+    font-size:1.1rem;
+
+    line-height:1.7;
+
+    font-style:italic;
+
+    color:#7b5b00;
+}
+
+
+/* =========================
+   JARDÍN
+========================= */
+
+.garden-section{
+    min-height:80vh;
+}
+
+.garden{
+    position:relative;
+
+    width:min(800px,94vw);
+    min-height:350px;
+
+    margin:25px auto;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #fff9cf 0%,
+            #fff2ad 65%,
+            #d8edb0 65%,
+            #a8cf72 100%
+        );
+
+    border:3px solid rgba(205,165,0,.3);
+
+    box-shadow:
+        inset 0 -50px 0 rgba(92,125,40,.1);
+}
+
+.ground{
+    position:absolute;
+
+    bottom:0;
+    left:0;
+    right:0;
+
+    height:35%;
+}
+
+.grown-flower{
+    position:absolute;
+
+    bottom:15px;
+
+    font-size:2.8rem;
+
+    animation:
+        crecer .7s ease forwards,
+        balanceo 3s ease-in-out infinite;
+
+    transform-origin:bottom center;
+}
+
+.garden-message{
+    margin-top:20px;
+
+    font-size:1.1rem;
+}
+
+
+/* =========================
+   CARTA FINAL
+========================= */
+
+.letter{
+    position:relative;
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:35px;
+
+    background:#fffdf3;
+
+    border-radius:8px;
+
+    box-shadow:
+        0 12px 30px rgba(90,65,0,.18);
+
+    transform:rotate(-1deg);
+
+    border:1px solid #e8dca2;
+}
+
+.letter::before{
+    content:"💛";
+
+    position:absolute;
+
+    top:-20px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:2rem;
+}
+
+.letter p{
+    font-size:1.15rem;
+    line-height:1.9;
+}
+
+.signature{
+    margin-top:25px;
+
+    font-size:1.3rem;
+
+    font-style:italic;
+}
+
+
+/* =========================
+   BOTÓN SECRETO
+========================= */
+
+.secret{
+    margin-top:30px;
+}
+
+.secret button{
+    background:#fff4c2;
+    box-shadow:none;
+
+    font-size:.9rem;
+}
+
+
+/* =========================
+   FLORES Y CORAZONES
+========================= */
+
+.flower{
+    position:fixed;
+
+    top:-60px;
+
+    pointer-events:none;
+
+    z-index:50;
+
+    animation:caer linear forwards;
+}
+
+.heart{
+    position:fixed;
+
+    pointer-events:none;
+
+    z-index:60;
+
+    animation:flotar 2.8s ease-out forwards;
+}
+
+.sparkle{
+    position:fixed;
+
+    pointer-events:none;
+
+    z-index:40;
+
+    color:#d8a800;
+
+    animation:brillar 2s ease-out forwards;
+}
+
+
+/* =========================
+   MÚSICA
+========================= */
+
+.music-control{
+    position:fixed;
+
+    bottom:20px;
+    right:20px;
+
+    z-index:90;
+
+    width:50px;
+    height:50px;
+
+    padding:0;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:1.2rem;
+}
+
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes entrada{
+
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.95);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+
+}
+
+@keyframes aparecer{
+
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+
+}
+
+@keyframes caer{
+
+    to{
+        transform:
+            translateY(110vh)
+            rotate(360deg);
+
+        opacity:.15;
+    }
+
+}
+
+@keyframes flotar{
+
+    to{
+        transform:
+            translateY(-180px)
+            scale(1.5);
+
+        opacity:0;
+    }
+
+}
+
+@keyframes brillar{
+
+    0%{
+        opacity:0;
+        transform:scale(.3);
+    }
+
+    40%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translateY(-80px)
+            scale(1.4);
+    }
+
+}
+
+@keyframes balanceo{
+
+    0%,100%{
+        transform:rotate(-4deg);
+    }
+
+    50%{
+        transform:rotate(4deg);
+    }
+
+}
+
+@keyframes crecer{
+
+    from{
+        transform:scale(0);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:600px){
+
+    .card{
+        padding:22px;
+    }
+
+    .section{
+        padding:35px 15px;
+    }
+
+    .photo{
+        max-height:45vh;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    button{
+        width:100%;
+    }
+
+    .letter{
+        padding:25px 20px;
+    }
+
+    .garden{
+        min-height:300px;
+    }
+
+    /* Álbum en celular */
+
+    .album{
+        gap:5px;
+    }
+
+    .album-photo-box{
+        width:78%;
+        padding:8px;
+    }
+
+    .album-photo{
+        height:320px;
+    }
+
+    .album-btn{
+        width:38px;
+        height:38px;
+
+        font-size:.95rem;
+    }
+
+    .album-caption{
+        font-size:.95rem;
+    }
+
+    .album-dot{
+        width:9px;
+        height:9px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ==================================
+     INTRO
+================================== -->
+
+<div class="intro" id="intro">
+
+    <div class="envelope">
+
+        <div class="flower-icon">
+            🌻
+        </div>
+
+        <h1>
+            Para mi cachetoncita 💛
+        </h1>
+
+        <p>
+            Tengo algo pequeñito preparado para ti...
+        </p>
+
+        <button class="open-btn" id="open">
+            💌 Abrir
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================
+     MÚSICA
+================================== -->
+
+<audio id="music" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-control" id="musicBtn">
+    🎵
+</button>
+
+
+
+<!-- ==================================
+     HERO
+================================== -->
+
+<section class="section">
+
+    <main class="card">
+
+        <div class="hero-flower">
+            🌼 💛 🌼
+        </div>
+
+        <h1>
+            Con cariño para ti,
+            mis flores amarillas
+        </h1>
+
+        <p class="subtitle">
+            Porque tú haces que cualquier día
+            se sienta un poquito más bonito.
+        </p>
+
+
+        <div class="photo-container">
+
+            <img
+                class="photo"
+                src="pareja.jpg"
+                alt="Foto especial"
+            >
+
+        </div>
+
+
+        <div class="buttons">
+
+            <button id="surprise">
+                🌻 Abrir sorpresa
+            </button>
+
+            <button id="rain" class="secondary">
+                💛 Lluvia de flores
+            </button>
+
+        </div>
+
+
+        <div id="message">
+
+            <strong>
+                Realmente te quería regalar algo especial...
+            </strong>
+
+            <br><br>
+
+            Así que no sé si una página web pueda competir
+            con unas flores de verdad,
+            pero al menos estas no se marchitan jsjsjs. 🌼
+
+            <br><br>
+
+            Gracias por todos esos momentos,
+            por las risas,
+            por aguantarme
+            y por estar ahí acompañándome
+            y apoyándome siempre <3.
+
+            <span class="highlight">
+                💛 Tú haces que mis días florezcan. 💛
+            </span>
+
+        </div>
+
+    </main>
+
+</section>
+
+
+
+<!-- ==================================
+     RECUERDOS
+================================== -->
+
+<section class="section">
+
+    <div class="card memory">
+
+        <div style="font-size:3rem;">
+            📸 💛 📸
+        </div>
+
+        <h2>
+            Algunos momentos contigo
+        </h2>
+
+        <p class="memory-text">
+
+            No podía hacer una página para ti
+            sin guardar algunos de nuestros momentos aquí.
+
+            <br><br>
+
+            Cada foto tiene su propia historia,
+            pero todas tienen algo en común:
+            son momentos que compartí contigo. 💛
+
+        </p>
+
+
+        <!-- ==================================
+             ÁLBUM
+        ================================== -->
+
+        <div class="album">
+
+            <button
+                class="album-btn"
+                id="prevPhoto">
+                ❮
+            </button>
+
+
+            <div class="album-photo-box">
+
+                <img
+                    id="albumPhoto"
+                    class="album-photo"
+                    src="foto1.jpg"
+                    alt="Nuestro momento"
+                >
+
+
+                <div class="album-info">
+
+                    <span
+                        class="album-number"
+                        id="photoNumber">
+                        1 / 5
+                    </span>
+
+
+                    <p
+                        class="album-caption"
+                        id="photoText">
+
+                        Uno de esos momentos que me gusta
+                        guardar porque simplemente estaba contigo. 💛
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="album-btn"
+                id="nextPhoto">
+                ❯
+            </button>
+
+        </div>
+
+
+        <!-- ==================================
+             PUNTITOS DEL ÁLBUM
+        ================================== -->
+
+        <div class="album-dots">
+
+            <button
+                class="album-dot active"
+                data-photo="0">
+            </button>
+
+            <button
+                class="album-dot"
+                data-photo="1">
+            </button>
+
+            <button
+                class="album-dot"
+                data-photo="2">
+            </button>
+
+            <button
+                class="album-dot"
+                data-photo="3">
+            </button>
+
+            <button
+                class="album-dot"
+                data-photo="4">
+            </button>
+
+        </div>
+
+
+        <p class="album-final">
+
+            Y podría poner muchísimas fotos más...
+            pero creo que ya entendiste que me encanta
+            tener recuerdos contigo. 🌻💛
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================
+     JARDÍN
+================================== -->
+
+<section class="section garden-section">
+
+    <div class="card">
+
+        <div style="font-size:3rem;">
+            🌱 🌻 🌱
+        </div>
+
+        <h2>
+            Hagamos crecer nuestro jardín
+        </h2>
+
+        <p>
+            Planta una flor cada vez que quieras. 🌼
+        </p>
+
+
+        <div class="garden" id="garden">
+
+            <div class="ground"></div>
+
+        </div>
+
+
+        <button id="plant">
+            🌱 Plantar una flor
+        </button>
+
+
+        <p class="garden-message" id="gardenMessage">
+            Todavía está vacío...
+            ¿me ayudas? 🥺
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================
+     CARTA FINAL
+================================== -->
+
+<section class="section">
+
+    <div class="card">
+
+        <div style="font-size:3rem;">
+            💌
+        </div>
+
+        <h2>
+            Y todavía me falta decirte algo...
+        </h2>
+
+
+        <div class="letter">
+
+            <p>
+
+                Mi cachetoncita,
+
+                <br><br>
+
+                No sé si una página web pueda compararse
+                con regalarte flores de verdad,
+                pero quería hacer algo diferente.
+
+                <br><br>
+
+                Quería que tuvieras algo que pudieras abrir
+                y que te recordara un poquito a mí.
+
+                <br><br>
+
+                Gracias por cada risa,
+                cada momento,
+                cada conversación,
+                por acompañarme,
+                por apoyarme
+                y también por aguantarme jsjsjs.
+
+                <br><br>
+
+                Puede que no siempre sepa cómo decir
+                todo lo que siento,
+                pero espero que puedas saber
+                lo mucho que significas para mí.
+
+                <br><br>
+
+                Y si algún día estás teniendo un día malo,
+                vuelve por aquí,
+                planta una flor
+                y acuérdate de que hay alguien
+                que quiere verte sonreír.
+
+            </p>
+
+
+            <div class="signature">
+
+                Con mucho cariño,
+
+                <br>
+
+                el amor de tu vida 💛
+
+            </div>
+
+        </div>
+
+
+        <div class="secret">
+
+    <button id="secret">
+        😈 No presionar
+    </button>
+
+    <br><br>
+
+    <button id="secret2">
+        🤫 Si presionar
+    </button>
+
+</div>
+
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+
+/* ==================================
+   ELEMENTOS
+================================== */
+
+const intro =
+    document.getElementById("intro");
+
+const open =
+    document.getElementById("open");
+
+const surprise =
+    document.getElementById("surprise");
+
+const rain =
+    document.getElementById("rain");
+
+const message =
+    document.getElementById("message");
+
+const plant =
+    document.getElementById("plant");
+
+const garden =
+    document.getElementById("garden");
+
+const gardenMessage =
+    document.getElementById("gardenMessage");
+
+const secret =
+    document.getElementById("secret");
+
+const music =
+    document.getElementById("music");
+
+const musicBtn =
+    document.getElementById("musicBtn");
+
+
+/* ==================================
+   ABRIR PÁGINA
+================================== */
+
+open.addEventListener("click",()=>{
+
+    intro.classList.add("hide");
+
+    crearFlores(12);
+
+    crearBrillos(10);
+
+});
+
+
+/* ==================================
+   CREAR FLORES
+================================== */
+
+function flower(){
+
+    const f =
+        document.createElement("div");
+
+    f.className="flower";
+
+    f.textContent =
+        ["🌼","🌻","💛"][
+
+            Math.floor(
+                Math.random()*3
+            )
+
+        ];
+
+    f.style.left =
+        Math.random()*100+"vw";
+
+    f.style.animationDuration =
+        (3+Math.random()*4)+"s";
+
+    f.style.fontSize =
+        (22+Math.random()*24)+"px";
+
+    document.body.appendChild(f);
+
+    setTimeout(()=>{
+        f.remove();
+    },8000);
+
+}
+
+
+function crearFlores(cantidad){
+
+    for(let i=0;i<cantidad;i++){
+
+        setTimeout(
+            flower,
+            i*100
+        );
+
+    }
+
+}
+
+
+/* ==================================
+   CORAZONES
+================================== */
+
+function heart(x,y){
+
+    const h =
+        document.createElement("div");
+
+    h.className="heart";
+
+    h.textContent="💛";
+
+    h.style.left=x+"px";
+
+    h.style.top=y+"px";
+
+    h.style.fontSize =
+        (18+Math.random()*15)+"px";
+
+    document.body.appendChild(h);
+
+    setTimeout(()=>{
+        h.remove();
+    },3000);
+
+}
+
+
+/* ==================================
+   BRILLOS
+================================== */
+
+function sparkle(x,y){
+
+    const s =
+        document.createElement("div");
+
+    s.className="sparkle";
+
+    s.textContent =
+        ["✦","✧","⋆","✨"][
+            Math.floor(Math.random()*4)
+        ];
+
+    s.style.left=x+"px";
+
+    s.style.top=y+"px";
+
+    s.style.fontSize =
+        (14+Math.random()*18)+"px";
+
+    document.body.appendChild(s);
+
+    setTimeout(()=>{
+        s.remove();
+    },2000);
+
+}
+
+
+function crearBrillos(cantidad){
+
+    for(let i=0;i<cantidad;i++){
+
+        setTimeout(()=>{
+
+            sparkle(
+                Math.random()*window.innerWidth,
+                Math.random()*window.innerHeight
+            );
+
+        },i*150);
+
+    }
+
+}
+
+
+/* ==================================
+   BOTÓN SORPRESA
+================================== */
+
+surprise.addEventListener("click",()=>{
+
+    message.style.display="block";
+
+    crearFlores(30);
+
+    for(let i=0;i<15;i++){
+
+        setTimeout(()=>{
+
+            heart(
+                Math.random()*window.innerWidth,
+                window.innerHeight -
+                Math.random()*250
+            );
+
+        },i*100);
+
+    }
+
+    crearBrillos(20);
+
+    surprise.textContent =
+        "💛 Ya lo viste jsjsjs";
+
+});
+
+
+/* ==================================
+   LLUVIA DE FLORES
+================================== */
+
+rain.addEventListener("click",()=>{
+
+    crearFlores(60);
+
+    for(let i=0;i<15;i++){
+
+        setTimeout(()=>{
+
+            heart(
+                Math.random()*window.innerWidth,
+                Math.random()*window.innerHeight
+            );
+
+        },i*80);
+
+    }
+
+});
+
+
+/* ==================================
+   ÁLBUM DE FOTOS
+================================== */
+
+/*
+    AQUÍ PUEDES CAMBIAR LAS FRASES
+    DE CADA FOTO.
+
+    Solo cambia el texto de "caption".
+*/
+
+const photos = [
+
+    {
+        image:"foto1.jpg",
+        caption:
+        "Uno de esos momentos que me gusta guardar porque simplemente estaba contigo. 💛"
+    },
+
+    {
+        image:"foto2.jpg",
+        caption:
+        "Aquí hay un recuerdo que siempre me saca una sonrisa cuando lo veo y jsjjs fue toda una aventura ese dia. 🌻"
+    },
+
+    {
+        image:"foto3.jpeg",
+        caption:
+        "Otro momento bonito que compartimos juntos, aunque ahi nos obligaron para la foto. 💕"
+    },
+
+    {
+        image:"foto4.jpeg",
+        caption:
+        "Y que bueno que nos obligaron es una de mis fotos favoritas de nuestro primer viaje la de nuestro beso. ✨"
+    },
+
+    {
+        image:"foto5.jpeg",
+        caption:
+        "Y esta es otra de esas fotos que cuentan una historia de lo bonito que hemos vivido juntos,  hasta donde hemos llegado y hacia donde vamos. 💛"
+    }
+
+];
+
+
+let currentPhoto = 0;
+
+
+const albumPhoto =
+    document.getElementById("albumPhoto");
+
+const photoNumber =
+    document.getElementById("photoNumber");
+
+const photoText =
+    document.getElementById("photoText");
+
+const prevPhoto =
+    document.getElementById("prevPhoto");
+
+const nextPhoto =
+    document.getElementById("nextPhoto");
+
+const albumDots =
+    document.querySelectorAll(".album-dot");
+
+
+/* ==================================
+   MOSTRAR FOTO
+================================== */
+
+function showPhoto(index){
+
+    currentPhoto = index;
+
+    albumPhoto.classList.add("change");
+
+
+    setTimeout(()=>{
+
+        albumPhoto.src =
+            photos[index].image;
+
+        photoText.textContent =
+            photos[index].caption;
+
+        photoNumber.textContent =
+            `${index + 1} / ${photos.length}`;
+
+        albumPhoto.classList.remove("change");
+
+    },300);
+
+
+    albumDots.forEach(dot => {
+
+        dot.classList.remove("active");
+
+    });
+
+
+    albumDots[index].classList.add("active");
+
+}
+
+
+/* ==================================
+   SIGUIENTE FOTO
+================================== */
+
+function nextAlbumPhoto(){
+
+    currentPhoto++;
+
+    if(currentPhoto >= photos.length){
+
+        currentPhoto = 0;
+
+    }
+
+    showPhoto(currentPhoto);
+
+}
+
+
+nextPhoto.addEventListener(
+    "click",
+    nextAlbumPhoto
+);
+
+
+/* ==================================
+   FOTO ANTERIOR
+================================== */
+
+prevPhoto.addEventListener(
+    "click",
+    ()=>{
+
+        currentPhoto--;
+
+        if(currentPhoto < 0){
+
+            currentPhoto =
+                photos.length - 1;
+
+        }
+
+        showPhoto(currentPhoto);
+
+    }
+);
+
+
+/* ==================================
+   PUNTITOS
+================================== */
+
+albumDots.forEach(dot => {
+
+    dot.addEventListener(
+        "click",
+        ()=>{
+
+            const index =
+                Number(
+                    dot.dataset.photo
+                );
+
+            showPhoto(index);
+
+        }
+    );
+
+});
+
+
+/* ==================================
+   PLANTAR FLORES
+================================== */
+
+let flowersGrown=0;
+
+plant.addEventListener("click",()=>{
+
+    flowersGrown++;
+
+    const f =
+        document.createElement("div");
+
+    f.className="grown-flower";
+
+    f.textContent =
+        ["🌼","🌻","🌷","🌺"][
+
+            Math.floor(
+                Math.random()*4
+            )
+
+        ];
+
+    f.style.left =
+        (5+Math.random()*90)+"%";
+
+    f.style.fontSize =
+        (30+Math.random()*20)+"px";
+
+    f.style.bottom =
+        (10+Math.random()*35)+"px";
+
+    garden.appendChild(f);
+
+
+    /* Mensajes según cantidad */
+
+    if(flowersGrown===1){
+
+        gardenMessage.textContent =
+            "Nuestra primera flor 🌱";
+
+    }
+
+    else if(flowersGrown===3){
+
+        gardenMessage.textContent =
+            "Ya está empezando a florecer 💛";
+
+    }
+
+    else if(flowersGrown===5){
+
+        gardenMessage.textContent =
+            "Mira nuestro pequeño jardín 🌻";
+
+    }
+
+    else if(flowersGrown===10){
+
+        gardenMessage.textContent =
+            "Creo que ya tenemos un jardín entero jsjsjs 🌼💛";
+
+    }
+
+    else if(flowersGrown>=15){
+
+        gardenMessage.textContent =
+            "Ok, oficialmente llenamos todo de flores JAJAJS 🌻💛";
+
+    }
+
+});
+
+
+/* ==================================
+   BOTÓN SECRETO
+================================== */
+
+secret.addEventListener("click",()=>{
+
+    crearFlores(100);
+
+    for(let i=0;i<40;i++){
+
+        setTimeout(()=>{
+
+            heart(
+                Math.random()*window.innerWidth,
+                Math.random()*window.innerHeight
+            );
+
+        },i*50);
+
+    }
+
+    crearBrillos(50);
+
+    secret.textContent =
+        "Jssjsjs sabía que lo ibas a presionar🤭💛";
+
+});
+
+const secret2 =
+    document.getElementById("secret2");
+
+secret2.addEventListener("click",()=>{
+
+    crearFlores(150);
+
+    for(let i=0;i<60;i++){
+
+        setTimeout(()=>{
+
+            heart(
+                Math.random()*window.innerWidth,
+                Math.random()*window.innerHeight
+            );
+
+        },i*40);
+
+    }
+
+    crearBrillos(80);
+
+    secret2.textContent =
+        "Y bueno espero que te haya gustado el intento de jsjsjs, te amo demasiado Leila quizas sea raro que te ponga Leila en lugar de amor pero tu nombre realmente significa mucho para mi en estos dias estuve pensando de mas y relamente te amo amor es sorprendente lo mucho que influyes en mi con solo unos mensajes o con solo pensarte y recordar los momentos que pasamos juntos y bueno nada si escribo todo lo que siento seria demasiao largo jsjsj. Asi que es resumen te amo demasiado y gracias por tanto❤️.";
+
+});
+
+/* ==================================
+   CLICK EN LA PANTALLA
+================================== */
+
+document.addEventListener("click",(e)=>{
+
+    if(
+        e.target.tagName==="BUTTON" ||
+        e.target.closest(".envelope")
+    ){
+        return;
+    }
+
+    heart(
+        e.clientX,
+        e.clientY
+    );
+
+    sparkle(
+        e.clientX+10,
+        e.clientY-10
+    );
+
+});
+
+
+/* ==================================
+   MÚSICA
+================================== */
+
+let playing=false;
+
+musicBtn.addEventListener("click",()=>{
+
+    if(!playing){
+
+        music.play()
+        .then(()=>{
+
+            playing=true;
+
+            musicBtn.textContent="⏸️";
+
+        })
+        .catch(()=>{
+
+            alert(
+                "Pon tu archivo musica.mp3 en la misma carpeta 💛"
+            );
+
+        });
+
+    }else{
+
+        music.pause();
+
+        playing=false;
+
+        musicBtn.textContent="🎵";
+
+    }
+
+});
+
+
+/* ==================================
+   BRILLOS AUTOMÁTICOS
+================================== */
+
+setInterval(()=>{
+
+    sparkle(
+        Math.random()*window.innerWidth,
+        Math.random()*window.innerHeight
+    );
+
+},1200);
+
+
+</script>
+
+</body>
+</html>
